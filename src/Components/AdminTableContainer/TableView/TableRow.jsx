@@ -1,7 +1,12 @@
 import { CircleX, Delete, Edit, Save, Trash } from 'lucide-react';
 import React, { useState } from 'react';
+import SearchBox from '../../General/SearchBox/SearchBox';
+import FloatingButton from '../../General/Button/FloatingButton';
 
 function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
+
+  console.log('-------user', Object.keys(user))
+
   const [edit, setEdit] = useState(false);
   const [userData, setUserData] = useState({ ...user });
 
@@ -25,6 +30,14 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
     setEdit(false);
   };
 
+  const onChangeTableDataInput = (e, name) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
+
+  const setContentEditable = () => {
+    setEdit(true)
+  }
+
   return (
     <tr className={selectedRows.includes(user.id) ? 'selected-row' : ''}>
       <td>
@@ -43,7 +56,22 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
       </td>
       {edit ? (
         <>
-          <td className="adjust_td_width">
+        {
+          Object.keys(userData).slice(1).map((item, index) => (
+           <td>
+            {
+              <SearchBox 
+              handleSearchOnChange={onChangeTableDataInput}
+              searchValue={userData[item]}
+              key={index}
+              currentClassName={"txt input_width"}
+              name={item}
+              />
+            }
+           </td>
+          ))
+        }
+          {/* <td className="adjust_td_width">
             <input
               className="txt input_width"
               value={userData.name}
@@ -69,7 +97,7 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
                 setUserData({ ...userData, role: e.target.value })
               }
             />
-          </td>
+          </td> */}
         </>
       ) : (
         <>
@@ -81,27 +109,35 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
       <td className="txt">
         {edit ? (
           <>
-            <button className="txt common_utility_btns" onClick={saveEdit}>
-              <Save />
-            </button>
-            <button className="txt common_utility_btns" onClick={undoEdit}>
-              <CircleX />
-            </button>
+           <FloatingButton
+           className={"txt common_utility_btns"}
+           onClick={saveEdit}
+          >
+           <Save size={'20px'} color={'#000000'}/>
+          </FloatingButton>
+
+            <FloatingButton
+           className={"txt common_utility_btns"}
+           onClick={undoEdit}
+          >
+          <CircleX size={'20px'} color={'red'}/>
+          </FloatingButton>
           </>
         ) : (
           <>
-            <button
-              className="edit txt common_utility_btns"
-              onClick={() => setEdit(true)}
-            >
-              <Edit size={'20px'} color={'#000000'} />
-            </button>
-            <button
-              className="delete txt common_utility_btns"
-              onClick={deleteRow}
-            >
-              <Trash size={'20px'} color={'red'} />
-            </button>
+          <FloatingButton
+           className={"edit txt common_utility_btns"}
+           onClick={setContentEditable}
+          >
+          <Edit size={'20px'} color={'#000000'} />
+          </FloatingButton>
+
+          <FloatingButton
+           className={"delete txt common_utility_btns"}
+           onClick={deleteRow}
+          >
+           <Trash size={'20px'} color={'red'} />
+          </FloatingButton>
           </>
         )}
       </td>

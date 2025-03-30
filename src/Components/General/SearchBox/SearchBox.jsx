@@ -6,16 +6,19 @@ function SearchBox({
   handleSearchOnChange,
   searchValue,
   placeholder = 'search',
+  currentClassName = null,
+  name= null
 }) {
   return (
     <div className="input_search_container">
       <input
-        className={'input_search_box txt'}
+        className={currentClassName ? currentClassName : 'input_search_box txt'}
         type={type}
         value={searchValue}
         onChange={handleSearchOnChange}
         aria-label="search-box"
         placeholder={placeholder}
+        name={name ? name : ''}
       />
     </div>
   );
