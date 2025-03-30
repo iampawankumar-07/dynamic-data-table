@@ -1,0 +1,19 @@
+.input_search_box {
+  width: 100%;
+  border: 1px solid transparent;
+  padding-right: 10px;
+}
+
+.txt {
+  font-size: 14px;
+  color: #000000;
+  line-height: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.input_search_box:focus,
+.input_search_box:focus-within,
+.input_search_box:focus-visible {
+  border: 1px solid transparent;
+  outline: none;
+}
