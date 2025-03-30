@@ -1,19 +1,20 @@
 import React from 'react'
 
 
-function FloatingButton(
+function PaginationFloatingButton(
     {
         className,
         onClick,
         children,
         ariaLabel,
-        disabled=null
+        disabled=null,
+        onClickParams
     }
 ) {
 
     return(
         <button className={className}
-        onClick={onClick}
+        onClick={() => onClick(onClickParams)}
         aria-label={ariaLabel}
         disabled={disabled ? disabled : null}
         >
@@ -23,4 +24,4 @@ function FloatingButton(
 
 }
 
-export default FloatingButton
+export default PaginationFloatingButton

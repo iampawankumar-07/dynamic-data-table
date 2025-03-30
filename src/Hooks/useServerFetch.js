@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { processServerErrors } from '../Utils/processServerErrors.admin-table-container';
+import { ProcessFetchUserErrors } from '../Utils/ProcessFetchUserErrors';
 
 export const useServerFetch = ({ currentServerEndpoint, options = {} }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,8 +27,8 @@ export const useServerFetch = ({ currentServerEndpoint, options = {} }) => {
         setIsLoading(false);
       }
     } catch (err) {
-      const responseErr = processServerErrors(err.message);
-      setErrorMsg(err.message);
+      const responseErr = ProcessFetchUserErrors(err.message);
+      setErrorMsg(responseErr);
       setIsLoading(false);
       throw new Error(err);
     }

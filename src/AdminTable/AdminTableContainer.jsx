@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './AdminTableContainer.css';
-import { FETCH_MEMBER_SERVICE_API_CONTRACT_DETAILS } from '../Configurations/apiContracts.server';
+import { FETCH_MEMBER_SERVICE_API_CONTRACT_DETAILS } from '../Configurations/ApiContracts.Server';
 import { useServerFetch } from '../Hooks/useServerFetch';
 import LoadingView from '../Components/AdminTableContainer/LoadingView';
 import ServerErrorView from '../Components/AdminTableContainer/ServerErrorView';

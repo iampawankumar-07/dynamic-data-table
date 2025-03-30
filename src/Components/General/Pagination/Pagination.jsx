@@ -1,4 +1,6 @@
+import { ChevronsLeft, ChevronsRight, MoveLeft, MoveRight } from 'lucide-react';
 import React from 'react';
+import PaginationFloatingButton from '../Button/PaginationFloatingButton';
 
 function Pagination({ totalRows, rowsPerPage, currentPage, setCurrentPage }) {
   const totalPages = Math.ceil(totalRows / rowsPerPage);
@@ -19,47 +21,84 @@ function Pagination({ totalRows, rowsPerPage, currentPage, setCurrentPage }) {
 
   return (
     <div className="pagination-container">
-      <button
+
+          <PaginationFloatingButton
+           className={"first-page"}
+           onClick={handleClick}
+           ariaLabel={'first-page'}
+           disabled={currentPage === 1}
+           onClickParams={1}
+          >
+           <ChevronsLeft size={'20px'} color={'#000000'}/>
+          </PaginationFloatingButton>
+
+      {/* <button
         className="first-page"
         onClick={() => handleClick(1)}
         disabled={currentPage === 1}
       >
         ⏪
-      </button>
+      </button> */}
 
-      <button
+        <PaginationFloatingButton
+           className={"previous-page"}
+           onClick={handleClick}
+           ariaLabel={'previous-page'}
+           disabled={currentPage === 1}
+           onClickParams={currentPage - 1}
+          >
+           <MoveLeft size={'20px'} color={'#000000'}/>
+          </PaginationFloatingButton>
+
+      {/* <button
         className="previous-page"
         onClick={() => handleClick(currentPage - 1)}
         disabled={currentPage === 1}
       >
         ◀️
-      </button>
+      </button> */}
 
       {getPageNumbers().map((page) => (
-        <button
-          key={page}
-          className={`page-number ${currentPage === page ? 'active' : ''}`}
-          onClick={() => handleClick(page)}
+
+        <PaginationFloatingButton
+        className={`page-number ${currentPage === page ? 'active' : ''}`}
+        onClick={handleClick}
+        ariaLabel={"navigation-btns"}
+        disabled={currentPage === totalPages}
+        onClickParams={page}
+        key={page}
         >
-          {page}
-        </button>
+       {page}
+        </PaginationFloatingButton>
+        
+        // <button
+        //   key={page}
+        //   className={`page-number ${currentPage === page ? 'active' : ''}`}
+        //   onClick={() => handleClick(page)}
+        // >
+        //   {page}
+        // </button>
       ))}
 
-      <button
-        className="next-page"
-        onClick={() => handleClick(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        ▶️
-      </button>
+        <PaginationFloatingButton
+           className={"next-page"}
+           onClick={handleClick}
+           ariaLabel={"next-page"}
+           disabled={currentPage === totalPages}
+           onClickParams={currentPage + 1}
+          >
+           <MoveRight size={'20px'} color={'#000000'}/>
+          </PaginationFloatingButton>
 
-      <button
-        className="last-page"
-        onClick={() => handleClick(totalPages)}
-        disabled={currentPage === totalPages}
-      >
-        ⏩
-      </button>
+        <PaginationFloatingButton
+          className={"last-page"}
+          onClick={handleClick}
+          ariaLabel={"last-page"}
+          disabled={currentPage === totalPages}
+          onClickParams={totalPages}
+        >
+          <ChevronsRight size={'20px'} color={'#000000'}/>
+        </PaginationFloatingButton>
     </div>
   );
 }

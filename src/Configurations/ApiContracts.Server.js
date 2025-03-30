@@ -1,6 +1,6 @@
 export const FETCH_MEMBER_SERVICE_API_CONTRACT_DETAILS = {
   ENDPOINT:
-    'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json',
+  import.meta.env.VITE_FETCH_MEMBER_SERVICE_API_ENDPOINT,
   OPTIONS: {
     method: 'GET',
   },

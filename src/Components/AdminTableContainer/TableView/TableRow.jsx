@@ -112,6 +112,7 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
            <FloatingButton
            className={"txt common_utility_btns"}
            onClick={saveEdit}
+           ariaLabel={'save'}
           >
            <Save size={'20px'} color={'#000000'}/>
           </FloatingButton>
@@ -119,6 +120,7 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
             <FloatingButton
            className={"txt common_utility_btns"}
            onClick={undoEdit}
+           ariaLabel={'cancel'}
           >
           <CircleX size={'20px'} color={'red'}/>
           </FloatingButton>
@@ -128,6 +130,7 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
           <FloatingButton
            className={"edit txt common_utility_btns"}
            onClick={setContentEditable}
+           ariaLabel={'edit'}
           >
           <Edit size={'20px'} color={'#000000'} />
           </FloatingButton>
@@ -135,6 +138,7 @@ function TableRow({ user, selectedRows, setSelectedRows, updateUsers }) {
           <FloatingButton
            className={"delete txt common_utility_btns"}
            onClick={deleteRow}
+           ariaLabel={'delete'}
           >
            <Trash size={'20px'} color={'red'} />
           </FloatingButton>
